@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { agregarFiltro, agregarTipos, cambiarPokemons, setEstado, aplicarFiltroPorTipo } from '../redux/actions';
 import './css/barra.css'
+import Swal from 'sweetalert2'
 const BarraBusqueda = (props)=>{
     const [barrita, setBarrita] = useState('');
     const [cargado, setCargado] = useState(false);
@@ -60,7 +61,8 @@ const BarraBusqueda = (props)=>{
         const coincidencia = pokemons.filter(x=>x.nombre === barrita);
         if (coincidencia.length>0) dispatch(cambiarPokemons(coincidencia));
         else {
-            alert('no hay coincidencias');
+            Swal.fire({title:'no hay coincidencias',
+            confirmButtonColor: '#f22'});
             dispatch(cambiarPokemons(pokemons.slice(0, pokesPerPag)))
         };
     }
