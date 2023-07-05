@@ -8,12 +8,10 @@ import {NavLink} from 'react-router-dom'
 
 
 function Card(props) {
-    //console.log(props)
-    // console.log(props.data.image)
   return (
 
     <react.Fragment>
-      <NavLink to={`/detalle/${props.data.id}`} className='card'> 
+      <NavLink to={`/detalle/${props.data.id}`} className='card'>
       <div>
         <h1 className='cardText'>{props.data.nombre}</h1>
         <img src={props.data.image||props.data.imagen} alt='pokemon' className='pokemonImg'/>

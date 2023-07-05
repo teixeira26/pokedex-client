@@ -12,7 +12,7 @@ import './css/paginacion.css'
     const [paginaActual, setPaginaActual] = useState(0)
     const [pags, setPags] = useState([]);
 
-    useEffect(()=>{ 
+    useEffect(()=>{
         setMaximo(Math.floor((totalPokemons.length-1)/pokemonsPerPag));
         setPaginaActual(0)
     },[totalPokemons]);
@@ -26,7 +26,6 @@ import './css/paginacion.css'
     },[maximo])
     useEffect(()=>{
         let pokeInicial = paginaActual * pokemonsPerPag;
-        //console.log('se ejecuta useEffect')
         dispatch(cambiarPokemons(totalPokemons.slice(pokeInicial, pokeInicial+pokemonsPerPag)))
     },[paginaActual])
 

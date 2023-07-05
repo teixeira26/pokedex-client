@@ -19,15 +19,11 @@ const estadoInicial = {
 const rootReducer = (estado = estadoInicial, accion)=>{
     switch (accion.type) {
         case 'SET_ESTADO':
-            // console.log(`entra al reducer con ${accion.payload}`);
-            // console.log(accion);
             return Object.assign({},estado,{
                 ...estado,
                 pokemons: [...accion.payload],
             })
         case 'CAMBIAR_POKEMONS':
-            console.log(`entra al reducer`);
-            console.log(accion.payload)
             return Object.assign({},estado, {
                 ...estado,
                 pagInicial:{
@@ -46,7 +42,6 @@ const rootReducer = (estado = estadoInicial, accion)=>{
             })
 
         case 'AGREGAR_FILTRO':
-            // console.log('entra al reducer')
             return (Object.assign(estado, {
                 ...estado,
                 filtros:{
@@ -56,13 +51,13 @@ const rootReducer = (estado = estadoInicial, accion)=>{
             }))
 
         case 'AGREGAR_TIPOS':
-            
+
             return Object.assign(estado, {
                 ...estado,
                 tipos:[...accion.payload],
             })
-        
-        
+
+
         case 'FILTRO_POR_TIPO':
             return({
                 ...estado,

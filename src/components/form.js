@@ -33,7 +33,7 @@ function Form() {
     })
     useEffect(async()=>{
         if(!tipos[0]){
-            let tipoos = await axios.get('https://pokedex-007.herokuapp.com/types');
+            let tipoos = await axios.get('https://pokedex-api-production-7030.up.railway.app/types');
             dispatch(agregarTipos(tipoos.data));
             setTiposCargados(true);
         }
@@ -55,7 +55,6 @@ function Form() {
                 }
             else{
                 const nuevoPokemon = pokemons.find(x=>x.nombre === e.target.value);
-                console.log(nuevoPokemon)
                 if(nuevoPokemon){
                     setError({
                         ...error,
@@ -90,7 +89,7 @@ function Form() {
                 setError({...error})
             }
         }
-        
+
     }
     const changstate2 = (e)=>{
         setPokemon({
@@ -101,16 +100,14 @@ function Form() {
     }
     const sendToDb = async(e)=>{
         e.preventDefault();
-        console.log(e.target.value)
         const busqueda = await axios({
             method:'post',
-            url:'https://pokedex-007.herokuapp.com/pokemons',
+            url:'https://pokedex-api-production-7030.up.railway.app/pokemons',
             data: pokemon});
             Swal.fire({title:'Pokemon creado con suceso',
             confirmButtonColor: '#f22'})
         let copia = pokemon;
         copia.id = busqueda.data[0].pokemonId;
-        console.log(copia)
         dispatch(crearnuevaCopia([...pokemons, copia]));
         dispatch(aplicarFiltroPorTipo(...pokemonsCopia1, copia));
     }

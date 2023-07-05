@@ -13,13 +13,9 @@ const Detalle = ()=>{
     const pokemons = useSelector(estado=>estado.pokemonsCopia2)
 
     useEffect(async()=>{
-        
+
         if(params.id.length<10)setDetalle(pokemons.find(x=>x.id === parseInt(params.id)))
         else setDetalle(pokemons.find(x=>x.id === params.id))
-        
-        console.log(pokemons)
-        console.log(params.id)
-        console.log(detalle)
 
     }, [pokemons])
     return(

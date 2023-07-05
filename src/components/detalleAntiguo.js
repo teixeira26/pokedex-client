@@ -11,10 +11,10 @@ const Detalle = ()=>{
     const params = useParams()
     useEffect(async()=>{
         if(typeof parseInt(params.id) === 'number'){
-            const detalles = await axios.get(`https://pokedex-007.herokuapp.com/pokemons/${params.id}`);
+            const detalles = await axios.get(`https://pokedex-api-production-7030.up.railway.app/pokemons/${params.id}`);
             setDetalle(detalles.data);
         }
-  
+
     }, [])
     return(
         <div>

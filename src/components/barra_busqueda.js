@@ -22,36 +22,31 @@ const BarraBusqueda = (props)=>{
     const pokemonsPerPag = useSelector(estado=>estado.pagInicial.pokemonsPerPag);
     const container = useRef();
     const test = useRef();
-    
-    
+
+
     useEffect(async ()=>{
         dispatch(setEstado(estadoInicial));
         dispatch(aplicarFiltroPorTipo(estadoInicial));
         async function tipos(){
             if(!tipoos[0]){
-                const tipos = await axios.get('https://pokedex-007.herokuapp.com/types');
+                const tipos = await axios.get('https://pokedex-api-production-7030.up.railway.app/types');
                 dispatch(agregarTipos(tipos.data));
             }
             setCargado(true);
         }
         tipos();
     },[]);
-    // useEffect(()=>{
-    //     referencia.current.value = 'todos';
-    //     console.log(referencia.current.value)
-    // }, [pokemons])
+
 
     const mirar  = ()=>{
         if(container.current.className === 'containerBarra'){
-            console.log(container.current.className)
             container.current.className = 'mostrar';
             test.current.className = 'testAbierto';
-            console.log(container.current.className)
         }
         else {container.current.className = 'containerBarra'
             test.current.className = 'testCerrado';
         };
-       
+
     }
     const actualizarEstado = (e)=>{
         setBarrita(e.target.value);
@@ -89,7 +84,6 @@ const BarraBusqueda = (props)=>{
     const aplicarCategoria = (e)=>{
         if(e.target.value === 'todos'){
             referenciaTipo.current.value = '';
-            console.log(referenciaTipo.current.value)
             dispatch(setEstado(estadoInicial));
             dispatch(aplicarFiltroPorTipo(estadoInicial));
             dispatch(cambiarPokemons(estadoInicial.slice(0,pokesPerPag)));
@@ -113,8 +107,7 @@ const BarraBusqueda = (props)=>{
         referenciaTipo.current.value = '-';
         referenciaNombre.current.value = '-';
         referenciaAsc.current.value = '-';
-        console.log(referenciaTipo.current.value)
-        
+
     }
     const ordenar = ()=>{
         if(estado.filtros.orden && estado.filtros.valor){
@@ -126,7 +119,6 @@ const BarraBusqueda = (props)=>{
             })
             dispatch(setEstado(nuevoEstado));
             dispatch(cambiarPokemons(totalPokemons.slice(0, pokemonsPerPag)));
-            // console.log(estado)
             }
             if(estado.filtros.orden === 'desc' && estado.filtros.valor === 'nombre'){
                 let nuevoEstado = estado.pokemons.sort((x, y)=>{
@@ -136,7 +128,6 @@ const BarraBusqueda = (props)=>{
                 })
                 dispatch(setEstado(nuevoEstado));
                 dispatch(cambiarPokemons(totalPokemons.slice(0, pokemonsPerPag)))
-                // console.log(estado)
             }
             if(estado.filtros.orden === 'asc' && estado.filtros.valor === 'fuerza'){
                 let nuevoEstado = estado.pokemons.sort((x, y)=>{
@@ -146,7 +137,6 @@ const BarraBusqueda = (props)=>{
                 })
                 dispatch(setEstado(nuevoEstado));
                 dispatch(cambiarPokemons(totalPokemons.slice(0, pokemonsPerPag)))
-                // console.log(estado)
                 }
                 if(estado.filtros.orden === 'desc' && estado.filtros.valor === 'fuerza'){
                     let nuevoEstado = estado.pokemons.sort((x, y)=>{
@@ -156,16 +146,15 @@ const BarraBusqueda = (props)=>{
                     })
                     dispatch(setEstado(nuevoEstado));
                     dispatch(cambiarPokemons(totalPokemons.slice(0, pokemonsPerPag)))
-                    // console.log(estado)
                 }
 
-            
+
         }
     }
     const orden =(e)=>{
         dispatch(agregarFiltro('orden',e.target.value));
         ordenar();
-    };  
+    };
     const valor =(e)=>{
         dispatch(agregarFiltro('valor',e.target.value));
         ordenar();
@@ -197,7 +186,7 @@ const BarraBusqueda = (props)=>{
                 </select>
             </form>
 
-            
+
             <form>
                 <label htmlFor="opciones">Categoria:</label>
                 <select name='opciones' onChange={aplicarCategoria} className='input'>
@@ -225,7 +214,7 @@ const BarraBusqueda = (props)=>{
         </div>
         </div>
         </div>
-       
+
         </div>
     )
 }

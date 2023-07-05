@@ -26,14 +26,11 @@ function Home() {
   },[])
 
   const load = async()=>{
-    const a = await axios.get('https://pokedex-007.herokuapp.com/');
+    const a = await axios.get('https://pokedex-api-production-7030.up.railway.app/');
     dispatch(setEstado(a.data));
     dispatch(aplicarFiltroPorTipo(a.data));
     dispatch(crearnuevaCopia(a.data));
-    //console.log(estadoGlobal)
     dispatch(cambiarPokemons(a.data.slice(0, estadoGlobal.pagInicial.pokemonsPerPag)))
-    // console.log(estadoGlobal);
-
   };
   return (
     <react.Fragment>

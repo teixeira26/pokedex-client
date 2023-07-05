@@ -1,10 +1,9 @@
 //Altera la propiedad pokemons del estado global
 const setEstado = (info)=>{
-    // console.log('entra a la action');
     return{type:'SET_ESTADO', payload:info}
 }
 
-//Altera lo que hay en la propiedad pokemonsMostrar del estado, esta propiedad es pasada a 
+//Altera lo que hay en la propiedad pokemonsMostrar del estado, esta propiedad es pasada a
 //cards como props, por lo tanto esta accion culmina en un re-renderizado de los pokemons en home
 const cambiarPokemons = (info)=>{
     return({
@@ -56,4 +55,4 @@ module.exports = {
     agregarTipos,
     aplicarFiltroPorTipo,
     crearnuevaCopia,
-} 
+}
